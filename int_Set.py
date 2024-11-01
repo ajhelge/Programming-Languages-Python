@@ -31,11 +31,34 @@ class int_Set():
         
         return True
             
-    def Intersect(self, set_To_Intersect):
-        pass
-    def Union(self, set_To_Union):
-        pass
-    def Diff(self, set_To_Diff):
-        pass
-    def __str__(self):
-        pass
+    def Intersect(self, set_To_Intersect):      #returns an intersection of set 1 and set 2 (only items in both).
+        set_I = int_Set()
+        for item in set_To_Intersect:
+            if item in self.setList:
+                set_I.insert(item)
+        
+        for item in self.setList:
+            if item in set_To_Intersect:
+                set_I.insert(item)
+        
+        return set_I
+
+    def Union(self, set_To_Union):              # Returns an Union of set 1 and set 2 (All items in both).
+        set_U = int_Set()
+        for item in self.setList:
+            set_U.insert(item)
+        for item in set_To_Union:
+            set_U.insert(item)
+
+        return set_U
+    
+    def Diff(self, set_To_Diff):                # Returns the difference between set 1 and set 2 (set 1 minus set 2).
+        set_D = int_Set()
+        for item in self.setList:
+            if item not in set_To_Diff:
+                set_D.insert(item)
+
+        return set_D
+    
+    def __str__(self):                          #Returns the contents of a set in a formatted string
+        return "{" + ", ".join(str(item) for item in self.setList) + "}"
